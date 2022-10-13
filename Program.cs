@@ -39,7 +39,6 @@
 
             const int svar = 21;
 
-            Random slump = new Random();
             Console.WriteLine(
                "\t\t Välkomen till 21:an\n" +
                "\t\t Välj ett alternativ\n" +
@@ -72,8 +71,7 @@
 
             }
 
-            användaren= slump.Next();
-
+    
              void Start21(int slump, int användaren, int dator1)
             {
                 Random slump2 = new Random();   
