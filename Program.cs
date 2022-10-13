@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             //Grupupgifft Blackjack
-            
+
             /*Skriva välkomnstmeddelande
                 * while (menyval != "4")
                 * skriv ut meny
@@ -27,6 +27,66 @@
                 * 
                 * 
                 */
+
+
+
+            
+
+            int användaren = 0;
+            int dator1 = 0;
+            int menu;
+            string[] vinnaren;
+
+            const int svar = 21;
+
+            Random slump = new Random();
+            Console.WriteLine(
+               "\t\t Välkomen till 21:an\n" +
+               "\t\t Välj ett alternativ\n" +
+               "\t\t  1.Spela 21:an\n" +
+               "\t\t  2.Visa senaste vinnaren\n" +
+               "\t\t  3.Spelets regler\n" +
+               "\t\t  4.Avsluta programmet\n");
+
+            menu = int.Parse(Console.ReadLine());
+
+            switch (menu)
+            {
+                case 1:
+
+
+
+                    break;
+
+                case 2:
+                    break;
+
+
+                case 3:
+                    break;
+
+                case 4:
+
+
+                    break;
+
+            }
+
+            användaren= slump.Next();
+
+             void Start21(int slump, int användaren, int dator1)
+            {
+                Random slump2 = new Random();   
+                for (int i = 0; i < 2; ++i)
+                {
+                användaren = användaren + slump2.Next(1, 11);
+                dator1= dator1+ slump2.Next(1, 11);
+                }
+
+
+            }
+
+
         }
     }
 }
