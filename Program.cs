@@ -5,9 +5,8 @@
         static void Main(string[] args)
         {
             //Grupupgifft Blackjack
-
-            /*by Daniel
-             * Skriva välkomnstmeddelande
+            
+            /*Skriva välkomnstmeddelande
                 * while (menyval != "4")
                 * skriv ut meny
                 * Läs in menyval
@@ -28,23 +27,6 @@
                 * 
                 * 
                 */
-
-            Console.WriteLine(
-                "\t\t Välkomen till 21:an\n" +
-                "\t\t Välj ett alternativ" +
-                "\t\t  1.Spela 21:an"
-                "\t\t  2.Visa senaste vinnaren" +
-                "\t\t  3.Spelets regler" +
-                "\t\t  4.Avsluta programmet"
-
-
-                );
-
-
-
-
-
-
         }
     }
 }
