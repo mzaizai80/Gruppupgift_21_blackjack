@@ -36,6 +36,8 @@
                 "\t\t  2.Visa senaste vinnaren" +
                 "\t\t  3.Spelets regler" +
                 "\t\t  4.Avsluta programmet"
+
+
                 );
 
 
