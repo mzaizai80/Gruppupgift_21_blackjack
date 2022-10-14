@@ -26,6 +26,7 @@
                 * 
                 */
             bool programRunning = true;
+            string winner = "Uncoded One";
             while (programRunning)
 
             {
@@ -37,7 +38,6 @@
                     +
                     "\n4. End the game");
 
-                string winner = "Uncoded One";
 
                 string menyChoice = Console.ReadLine();
                 switch (menyChoice)
