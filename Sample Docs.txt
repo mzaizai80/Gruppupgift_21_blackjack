@@ -1,0 +1,331 @@
+﻿
+// Skriv ut huvudmenyn
+// Skriv välkomstmeddelande
+// Sätt menyVal till "0"
+// while (menyval != ”4”)
+// Skriv ut meny
+// Läs in menyVal
+// switch menyVal
+// case 1: Spela en omgång av 21:an
+// case 2: Visa senaste vinnaren
+// case 3: Visa spelets regler
+// case 4: Gör ingenting (programmet avslutas)
+// default: Skriv att alternativet var ogiltigt
+Än
+
+
+Case 1
+// Sätt spelarensPoäng och datornsPoäng till 0
+// Dra två kort per spelare
+// sätt kortVal till "j"
+// while (kortVal != "n" och spelarensPoäng <= 21)
+// Skriv ut poängställningen
+// Fråga om spelaren vill ha ett till kort
+// Läs in kortval
+// switch kortVal
+// case "j": Dra ett kort till
+// case "n": Gör ingenting (loopen kommer sluta köras)
+// default: Skriv att alternativet var ogiltigt
+break;
+
+// Gå tillbaka till huvudmenyn om användaren har över 21
+// Datorn drar kort tills den vinner eller går över 21
+// Skriv ut datorns och spelarens poäng
+// Undersök vem som vann
+// Om spelaren vann så får hen skriva in sitt namn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================
+The program class:
+==============================
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string menuSelection;
+
+        // Instantiate the shapes.
+        Circle circle = new Circle();
+        Rectangle rectangle = new Rectangle();
+
+        Console.WriteLine("Welcome, select an action from the menu below.\nType zero (0) to exit.");
+        do
+        {
+            // Display menu.
+            Console.WriteLine("\n1 Circle\n2 Rectangle\n0 Exit");
+            menuSelection = Console.ReadLine();
+
+            switch (menuSelection)
+            {
+                case "1": // Circle.
+                    // The Circle exists.
+                    if (circle.Radius > 0)
+                    {
+                        circle.GetProperties();
+                        UserInput.ChangeProperties(circle);
+                    }
+                    // Create the Circle for the first time.
+                    else
+                    {
+                        Console.WriteLine("Please input the Circle's radius_");
+                        circle.Radius = UserInput.AssertIsDouble();
+                    }
+                    break;
+                case "2": // Rectangle.
+                    if (rectangle.Width > 0 && rectangle.Length > 0)
+                    {
+                        rectangle.GetProperties();
+                        UserInput.ChangeProperties(rectangle);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please input the Rectangle's length_");
+                        rectangle.Length = UserInput.AssertIsDouble();
+                        Console.WriteLine("Please input the Rectangle's width_");
+                        rectangle.Width = UserInput.AssertIsDouble();
+                    }
+                    break;
+                case "0": // Exit.
+                    break;
+                default:
+                    Console.WriteLine("\nSorry, I only accept numbers from zero (0) to six (2).");
+                    break;
+            }
+        } while (menuSelection != "0");
+    }
+}
+
+
+
+
+
+
+
+
+==============================
+The UserInput class:
+==============================
+
+class UserInput
+{
+    // Valdates the users's input.
+    public static double AssertIsDouble()
+    {
+        bool isDouble = false;
+        double number = 0;
+
+        do
+        {
+            if (Double.TryParse(Console.ReadLine(), out number) && number > 0)
+            {
+                isDouble = true;
+            }
+            else
+            {
+                Console.WriteLine("Please, input a number greater than zero (0)_");
+            }
+
+        } while (!isDouble);
+
+        return number;
+    }
+
+    // Changes the properties of the objects at users will.
+    public static void ChangeProperties(Object shape)
+    {
+        char ch;
+        string className = shape.GetType().Name;
+
+        Console.WriteLine("Do you want to change the properties of the {0}, y/n?", className);
+        ch = Console.ReadKey(true).KeyChar; // Do not echo the user's input.
+        if (ch == 'y')
+        {
+            switch (className)
+            {
+                case "Circle":
+                    Circle c = (Circle)shape;
+                    Console.WriteLine("Please input the Circle's new radius_");
+                    c.Radius = UserInput.AssertIsDouble();
+                    c.GetProperties();
+                    break;
+                case "Rectangle":
+                    Rectangle r = (Rectangle)shape;
+                    Console.WriteLine("Please input the Rectangle's new length_");
+                    r.Length = UserInput.AssertIsDouble();
+                    Console.WriteLine("Please input the Rectangle's new width_");
+                    r.Width = UserInput.AssertIsDouble();
+                    r.GetProperties();
+                    break;
+                default:
+                    Console.WriteLine("No properties changed.\n");
+                    break;
+            }
+        }
+    }
+}
+
+
+
+
+
+==============================
+The Circle class:
+==============================
+
+
+class Circle : Shape
+{
+    // Circle's radius.
+    private double radius;
+
+    // Radius property.
+    public double Radius
+    {
+        get { return radius; }
+        set { radius = value; }
+    }
+
+    // Create a Circle at will.
+    public Circle()
+    {
+        this.radius = Radius;
+        Console.Write("Circle has been created. radius is: {0}\n", radius);
+    }
+
+    // Get Circle's area.
+    public override double GetArea()
+    {
+        return Math.PI * (radius * radius);
+    }
+
+    // Get Circle's perimeter.
+    public override double GetPerimeter()
+    {
+        return 2 * Math.PI * radius;
+    }
+
+    // Get Circle's properties.
+    public override void GetProperties()
+    {
+        Console.WriteLine("\nThe current Circle has the following properties:");
+        Console.WriteLine("Radius: {0}\nArea: {1}\nCircumference: {2}", Radius, GetArea(), GetPerimeter());
+        UserInput.Separator();
+    }
+}
+
+
+==============================
+The Rectangle class:
+==============================
+
+class Rectangle : Shape
+{
+    private double width; // The width field.
+    private double length; // The length field.
+
+    // The Length property.
+    public double Length
+    {
+        get { return length; }
+        set
+        {
+            if (value > 0)
+            {
+                length = value;
+            }
+        }
+    }
+
+    // The Width property.
+    public double Width
+    {
+        get { return width; }
+        set
+        {
+            if (value > 0)
+            {
+                width = value;
+            }
+        }
+    }
+
+    // Create a Rectangle at will.
+    public Rectangle()
+    {
+        this.length = Length;
+        this.width = Width;
+    }
+
+    // Create a predefined Rectangle.
+    public Rectangle(double length, double width)
+    {
+        this.length = length;
+        this.width = width;
+    }
+
+    // Get Rectangle's area.
+    public override double GetArea()
+    {
+        return this.Length * this.Width;
+    }
+
+    // Get Rectangle's perimeter.
+    public override double GetPerimeter()
+    {
+        return 2 * (this.Length + this.Width);
+    }
+
+    // Get Rectangle's properties.
+    public override void GetProperties()
+    {
+        Console.WriteLine("\nThe current Rectangle has the following properties:"); 
+        Console.WriteLine("Length: {0}\nWidth: {1}\nArea: {2}\nPerimeter: {3}", Length, Width, GetArea(), GetPerimeter());
+        UserInput.Separator();
+    }
+}
+
+
+
+
+
+==============================
+The shape class:
+==============================
+
+
+abstract class Shape
+    {
+        // Shape's Methods
+        abstract public double GetArea();
+        abstract public double GetPerimeter();
+        abstract public void GetProperties();
+    }
+
